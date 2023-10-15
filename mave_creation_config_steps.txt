@@ -1,0 +1,62 @@
+1. Ensure you have a 2023 Eclipse IDE version
+2. Create the steps using Maven-archetype-webapp
+3. Add the following folders:
+    -src/main/java
+     -src/test/java
+4. Add the properties section in the POM.xml file
+	<properties>
+	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	  <maven.compiler.source>17</maven.compiler.source>
+  	  <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+5. Add dependencies (servelt, jsp) to POM.xml file
+	 <dependencies>
+	<!-- Add servlet depencencies -->
+	<dependency>
+	  <groupId>javax.servlet</groupId>
+	  <artifactId>javax.servlet-api</artifactId>
+	  <version>4.0.1</version>
+	  <scope>provided</scope>
+    </dependency>
+
+	<!-- Add jsp dependencies -->
+    <dependency>
+ 	  <groupId>javax.servlet.jsp</groupId>
+	  <artifactId>javax.servlet.jsp-api</artifactId>
+	  <version>2.3.3</version>
+	  <scope>provided</scope>
+	 </dependency> 
+6. Add the maven-war-plugin in the build section so maven can package our project as a .war file.
+	<plugins>
+	<plugin>
+	   <groupId>org.apache.maven.plugins</groupId>
+	   <artifactId>maven-war-plugin</artifactId>
+	   <version>3.4.0</version>
+	</plugin>
+	</plugins>
+	
+7. Open the server and install Tomcat v9.0 (just once).
+	- Download Tomcat v9.x manually if needed from
+	- https://tomcat.apache.org/download-90.cgi
+
+8. Right-click the project name, then click properties:
+ 	- Targeted Runtime: Apache Tomcat v9.0
+ 	
+9. Right-click the project name, then click properties:
+	- Select Maven/ update project/ force update/ ok
+	
+10. Right-click the project name, then select Run As/ Maven build/ clean install/ Run
+ 	
+11. Add the <welcome-file-list> to the web.xml file
+	- Ensure you are at the Source tab (not the design tab)
+	
+12. Right-click the project name, then select Run on Server/ select Tomcat/ next/ finish
+
+13. Open the browser and type the following in search bar:
+	- http://localhost:8080/servlet/
+	-replace "servlet" with the value that you set in the pom.xml for the finalName.
+	- <finalName>servlet</finalName>
+ 	
+	
+	
+    
