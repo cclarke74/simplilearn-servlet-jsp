@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/*
+ * Servlet implementation class FormServlet
+ */
+
 @WebServlet("/FormServlet")
 public class _05_FormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
