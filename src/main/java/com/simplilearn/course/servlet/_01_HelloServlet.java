@@ -1,7 +1,6 @@
 package com.simplilearn.course.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,15 +15,7 @@ public class _01_HelloServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		response.setContentType("text/html");
-		PrintWriter printWriter = response.getWriter();
-		
-		printWriter.print("<html>");
-		printWriter.print("<body>");
-		printWriter.print("<h1>Hello World HttpServlet Class Example</h1>");
-		printWriter.print("<a href='https://www.google.com/'>Google</a>");
-		printWriter.print("</body>");
-		printWriter.print("</html>");
+		request.getRequestDispatcher("hello.jsp").forward(request, response);
 	}
 
 	
