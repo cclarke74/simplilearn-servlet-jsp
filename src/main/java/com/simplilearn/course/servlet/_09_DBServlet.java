@@ -1,7 +1,7 @@
 package com.simplilearn.course.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -28,51 +28,16 @@ public class _09_DBServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
-			PrintWriter out = response.getWriter();
-	       
-			boolean show =Boolean.valueOf(request.getParameter("show"));
-			
-			out.print("<html>");
-			out.print("<body>");
-			out.print("<h1>DB HttpServlet Class Example</h1>");
-			out.print("<br>");
-			if(show) {
-				
-				List<User> users = this.loadUsers();
-				
-				out.print("<table border='1'>");
-				out.print("<tr>");
-				out.print("<th>ID</th>");
-				out.print("<th>Name</th>");
-				out.print("<th>Username</th>");
-				out.print("<th>Birth</th>");
-				out.print("<th>Status</th>");
-				out.print("</tr>");
-				
-				for (User user: users) {
-					 out.print("<tr>");
-		             out.print("<th>" + user.getIdUser()+ "</th>");
-		             out.print("<th>" + user.getFirstName() + " " + user.getLastName() + "</th>");
-		             out.print("<th>" + user.getUsername() + "</th>");
-		             out.print("<th>" + user.getBirth() + "</th>");
-		             out.print("<th>" + user.getStatus()+ "</th>");
-		             out.print("</tr>");
-				
-				}
-				
-				out.print("</table>");
-				out.print("<br>");
-				out.print("<a href ='" + request.getContextPath() + "/DBServlet'>Try Again</a>");
-				
-			}
-			else {
-				out.print("<a href ='" + request.getContextPath() + "/DBServlet?show=true'>Show Data</a>");
-			}
-			
-			
-		    out.print("</body>");
-			out.print("</html>");
+		
+		boolean show =Boolean.valueOf(request.getParameter("show"));
+
+		if (show) {
+			List<User> users = this.loadUsers();  
+			request.setAttribute("users", users);
+		
+		}	
+		
+		request.getRequestDispatcher("user_db_data.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -80,6 +45,7 @@ public class _09_DBServlet extends HttpServlet {
 		
 	
 	}
+	
 	
 	List<User> loadUsers(){
 	
